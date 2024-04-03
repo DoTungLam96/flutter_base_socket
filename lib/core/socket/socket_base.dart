@@ -41,6 +41,7 @@ class SocketBase {
 
   void addMessage(String message) {
     try {
+      var a = _channel;
       sink?.add(message);
     } catch (error) {
       debugPrint('error= $error');

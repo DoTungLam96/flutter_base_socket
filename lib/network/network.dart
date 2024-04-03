@@ -20,12 +20,12 @@ extension ParseToString on Env {
 
 class Network {
   // Init environment
-  Env _env = Env.Dev;
+  Env _env = Env.Uat;
 
   NetworkEnv get domain {
     switch (_env) {
       case Env.Dev:
-        return DevEnv();
+        return UatEnv();
       case Env.Uat:
         return UatEnv();
       case Env.Pro:

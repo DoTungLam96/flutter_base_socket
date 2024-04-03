@@ -199,15 +199,15 @@ class RealtimeManagement with RealtimeLogger {
   void _countSubscribe() {
     indexCount.stockController.stream.listen((event) {
       _sendEventQueue.enqueue(() {
-        _subscribeEvent(event, Topic.indexRealtime);
+        _subscribeExchangeEvent(event, Topic.indexRealtime);
       });
     });
 
-    stockCount.stockController.stream.listen((event) {
-      _sendEventQueue.enqueue(() {
-        _subscribeEvent(event, Topic.sessionByList);
-      });
-    });
+    // stockCount.stockController.stream.listen((event) {
+    //   _sendEventQueue.enqueue(() {
+    //     _subscribeEvent(event, Topic.);
+    //   });
+    // });
   }
 
   void _initStockSocket({isInit = false}) {

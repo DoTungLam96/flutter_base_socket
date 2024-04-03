@@ -23,25 +23,21 @@ class HomeScreen extends StatefulWidget {
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      RealtimeManagement.instance.addStocks([
-        "SSI",
-        "HPG",
-        "GAS",
-        "FPT",
-        "MWG",
-        "ACB",
-        "VND",
-        "CTG",
-        "TCB",
-        "SHB"
-      ]);
+      WidgetsBinding.instance.addObserver(this);
     });
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state == AppLifecycleState.resumed) {
+      RealtimeManagement.instance.addListIndex(
+          ["VNINDEX", "VN30", "HNXIndex", "HNX30", "HNXUpcomIndex"]);
+    }
   }
 
   @override
